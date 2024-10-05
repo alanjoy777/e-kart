@@ -8,7 +8,7 @@ import Badge from 'react-bootstrap/Badge';
 function Header() {
   return (
     <div>
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-success">
       <Container>
         <Navbar.Brand href="#home" >
           <Link to={'/'} style={{textDecoration:"none",color:"black",fontWeight:"bold"}}>
@@ -20,12 +20,12 @@ function Header() {
           <Nav className="ms-auto">
             <Nav.Link  className='btn btn-outline-light'>
               <Link to={'/wishlist'} style={{color:"black",fontWeight:"bold",textDecoration:"none"} }>
-               <i className='fa-solid fa-heart text-danger'></i>Wishlist <Badge bg="success rounded ms-2">9</Badge>
+               <i className='fa-solid fa-heart text-danger'></i>Wishlist <Badge bg="light rounded ms-2">9</Badge>
               </Link>
             </Nav.Link>
             <Nav.Link  className='btn btn-outline-light'>
               <Link to={'/cart'} style={{color:"black",fontWeight:"bold",textDecoration:"none"} }>
-               <i className='fa-solid fa-cart-shopping text-warning'></i>Cart <Badge bg="success rounded ms-2">9</Badge>
+               <i className='fa-solid fa-cart-shopping text-warning'></i>Cart <Badge bg="light rounded ms-2">9</Badge>
               </Link>
             </Nav.Link>
           
