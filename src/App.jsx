@@ -7,14 +7,15 @@ import Home from './pages/Home'
 import Wishlist from './pages/Wishlist'
 import View from './pages/View'
 import Cart from './pages/Cart'
+import { useState } from 'react'
 
 function App() {
-
+  
   return (
     <>
-    <Header/>
+    <Header />
     <Routes>
-       <Route path='/' element={<Home/>}/>
+       <Route path='/' element={<Home />}/>
        <Route path='/wishlist' element={<Wishlist/>}/>
        <Route path='/cart' element={<Cart/>}/>
        <Route path='/view/:id' element={<View/>}/>
