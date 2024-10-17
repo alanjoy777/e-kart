@@ -16,7 +16,7 @@ function Home() {
 // console.log(error);
 const{wishlist}=useSelector((state)=>state.wishlistReducer)
 
-
+const{cart}=useSelector(state=>state.cartReducer)
   
   useEffect(()=>{
 
@@ -41,7 +41,16 @@ const{wishlist}=useSelector((state)=>state.wishlistReducer)
   // console.log(wishlist);
   
 
-
+const handleCart=(product)=>{
+    const existingProduct= cart?.find(item=>item.id== product.id)
+    if(existingProduct){
+      dispatch(addToCart(product))
+      alert("item adedd (quantity increased)")
+    }else{
+      dispatch(addToCart(product))
+      alert("item adedd ")
+    }
+}
 
   return (
 
@@ -65,7 +74,7 @@ const{wishlist}=useSelector((state)=>state.wishlistReducer)
            </Card.Text>
            <div className="d-flex justify-content-between">
                <Button className='btn btn-light' onClick={(e)=>handleWishlist(product)} ><i className='fa-solid fa-heart text-danger'></i></Button>
-               <Button className='btn btn-light' onClick={(e)=>dispatch(addToCart(product))} ><i className='fa-solid fa-cart-shopping text-warning'></i></Button>
+               <Button className='btn btn-light' onClick={(e)=>handleCart(product)} ><i className='fa-solid fa-cart-shopping text-warning'></i></Button>
            </div>
            
          </Card.Body>

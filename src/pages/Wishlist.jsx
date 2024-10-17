@@ -10,6 +10,13 @@ function Wishlist() {
   const{wishlist}=useSelector((state)=>state.wishlistReducer)
    
   const dispatch=useDispatch()
+  const{cart}=useSelector(state=>state.cartReducer)
+
+  const handleCart=(product)=>{
+   dispatch(addToCart(product))
+   dispatch(removeFromWishlist(product.id))
+  }
+
 
   return (
     <div className='d-flex justify-content-center'>
@@ -25,7 +32,7 @@ function Wishlist() {
      <Card.Title style={{color:"black"}} className='text-center'>{product.title.slice(0,12)}...</Card.Title>
      <div className="d-flex justify-content-between">
          <Button className='btn btn-light' onClick={(e)=>dispatch(removeFromWishlist(product.id))} ><i className='fa-solid fa-trash text-danger'></i></Button>
-         <Button className='btn btn-light' onClick={(e)=>dispatch(addToCart(product))} ><i className='fa-solid fa-cart-shopping text-warning'></i></Button>
+         <Button className='btn btn-light'onClick={(e)=>handleCart(product)}  ><i className='fa-solid fa-cart-shopping text-warning'></i></Button>
      </div>
      
    </Card.Body>
@@ -36,7 +43,7 @@ function Wishlist() {
 
 
 </Row>:<div className='d-flex justify-content-center'> 
-  <img src="https://i.pinimg.com/736x/2e/ac/fa/2eacfa305d7715bdcd86bb4956209038.jpg" alt="" />
+  <img src="https://i.pinimg.com/originals/f6/e4/64/f6e464230662e7fa4c6a4afb92631aed.png" alt="" />
 </div>
 }
     </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { emptycart, removeFromCart } from '../redux/slice/cartSlice'
@@ -7,6 +7,17 @@ function Cart() {
 
 
   const{cart}=useSelector(state=>state.cartReducer)
+  const[total,setTotal]=useState(0)
+
+
+  useEffect(()=>{
+    if(cart?.length>0){
+      setTotal(cart?.map(product=>product.totalPrice).reduce((p1,p2)=>p1+p2))
+    }else{
+      setTotal(0)
+    }
+  },[cart])
+
 
 const dispatch=useDispatch()
   return (
@@ -32,8 +43,8 @@ const dispatch=useDispatch()
                         <td>{index+1}</td>
                         <td>{item.title}</td>
                         <td><img style={{width:"200px",height:"200px"}} src={item.thumbnail} alt="" /></td>
-                        <td>1</td>
-                        <td>${item.price}</td>
+                        <td className='text-center'>{item.quantity}</td>
+                        <td>${item.totalPrice}</td>
                         <td> <button onClick={()=>dispatch(removeFromCart(item.id))}  className='btn'><i className='fa-solid fa-trash text-danger'></i></button></td>
                        </tr>
                    )):<div></div>
@@ -51,8 +62,8 @@ const dispatch=useDispatch()
          <div className="col-lg-3 ">
          <div className="container border rounded shadow mt-5 p-5 w-85">
             <h2>Cart Summary</h2>
-            <h4>Total Products</h4>
-            <h5>Total: <span className='text-danger fw-bolder'>$1892</span></h5>
+            <h4>Total Products:{ cart?.length}</h4>
+            <h5>Total: <span className='text-danger fw-bolder'>${total}</span></h5>
          </div>
          <div className="d-grid">
            <button className='btn btn-success mt-2 rounded'>Checkout</button>

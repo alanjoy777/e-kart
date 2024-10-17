@@ -12,7 +12,7 @@ const{id}=useParams()
 // console.log(id);
 
 const[product,setProduct]=useState({})
-
+const{cart}=useSelector(state=>state.cartReducer)
   useEffect(()=>{
     const products= JSON.parse(localStorage.getItem("products"))
 
@@ -37,6 +37,18 @@ const handleWishlist=(product)=>{
    
 }
 
+
+const handleCart=(product)=>{
+  const existingProduct= cart?.find(item=>item.id== product.id)
+  if(existingProduct){
+    dispatch(addToCart(product))
+    alert("item adedd (quantity increased)")
+  }else{
+    dispatch(addToCart(product))
+    alert("item adedd ")
+  }
+}
+
   return (
     <div className='container row' style={{marginTop:"80px"}}>
 
@@ -55,7 +67,7 @@ const handleWishlist=(product)=>{
           <p>{product.description}</p>
            <div className="d-flex justify-content-between mt-4">
            <Button className='btn btn-light'onClick={(e)=>handleWishlist(product)}  ><i className='fa-solid fa-heart text-danger'></i></Button>
-           <Button className='btn btn-light' onClick={(e)=>dispatch(addToCart(product))} ><i className='fa-solid fa-cart-shopping text-warning'></i></Button>
+           <Button className='btn btn-light'onClick={(e)=>handleCart(product)} ><i className='fa-solid fa-cart-shopping text-warning'></i></Button>
            </div>
        </div>
 
