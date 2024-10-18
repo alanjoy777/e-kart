@@ -17,9 +17,9 @@ function Header() {
   const[wishlistCount,SetWishlistCount]=useState(0)
 const[cartCount,SetcartCount]=useState(0)
   const{wishlist}=useSelector((state)=>state.wishlistReducer)
-  
-  const{cart}=useSelector(state=>state.cartReducer)
-  console.log(cart);
+  const[orderCount,setOrderCount]=useState(0)
+  const{cart, orders}=useSelector(state=>state.cartReducer)
+  // console.log(cart);
   
 
 
@@ -28,6 +28,7 @@ const[cartCount,SetcartCount]=useState(0)
   useEffect(() => {
     SetWishlistCount(wishlist.length);
     SetcartCount(cart.length)
+    setOrderCount(orders.length)
   }, [wishlist,cart]);
   
 
@@ -59,6 +60,12 @@ const[cartCount,SetcartCount]=useState(0)
             <Nav.Link  className='btn btn-outline-light'>
               <Link to={'/cart'} style={{color:"black",fontWeight:"bold",textDecoration:"none"} }>
                <i className='fa-solid fa-cart-shopping text-warning'></i>Cart <Badge bg="light rounded ms-2">{cartCount}</Badge>
+              </Link>
+            </Nav.Link>
+
+            <Nav.Link  className='btn btn-outline-light'>
+              <Link to={'/orders'} style={{color:"black",fontWeight:"bold",textDecoration:"none"} }>
+               Orders <Badge bg="light rounded ms-2">{orderCount}</Badge>
               </Link>
             </Nav.Link>
           

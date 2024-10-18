@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { addToWishlist } from '../redux/slice/wishListSlice'
 import { addToCart } from '../redux/slice/cartSlice'
+import { toast } from 'react-toastify'
 
 function View() {
 
@@ -29,7 +30,7 @@ const handleWishlist=(product)=>{
   const existingProduct=wishlist.find(item=> item.id == product.id)
 
   if(existingProduct){
-    alert(" already exists in wishist ")
+    toast(" already exists in wishist ")
   }else{
     dispatch(addToWishlist(product))
    
@@ -45,7 +46,7 @@ const handleCart=(product)=>{
     alert("item adedd (quantity increased)")
   }else{
     dispatch(addToCart(product))
-    alert("item adedd ")
+    toast("item adedd ")
   }
 }
 

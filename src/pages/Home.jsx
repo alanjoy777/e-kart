@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { fetchProductData } from '../redux/slice/productSlice'
 import { addToWishlist } from '../redux/slice/wishListSlice'
 import { addToCart } from '../redux/slice/cartSlice'
+import { toast } from 'react-toastify'
 
 
 function Home() {
@@ -30,7 +31,7 @@ const{cart}=useSelector(state=>state.cartReducer)
     const existingProduct= wishlist.find(item=> item.id == product.id)
 
     if(existingProduct){
-      alert(" already exists in whislist ")
+      toast.info(" already exists in whislist ")
     }else{
       dispatch(addToWishlist(product))
      
@@ -45,17 +46,17 @@ const handleCart=(product)=>{
     const existingProduct= cart?.find(item=>item.id== product.id)
     if(existingProduct){
       dispatch(addToCart(product))
-      alert("item adedd (quantity increased)")
+      toast.info("item adedd (quantity increased)")
     }else{
       dispatch(addToCart(product))
-      alert("item adedd ")
+      toast.info("item adedd ")
     }
 }
 
   return (
 
     
-    <div style={{marginTop:"70px"}} className='d-flex justify-content-center'>
+    <div style={{marginTop:"70px",marginBottom:"250px"}} className='d-flex justify-content-center'>
         {
           loading?<div className='mt-5 text-center fw-bolder'>
               <Spinner animation='border' variant='primary'/> Loading....
